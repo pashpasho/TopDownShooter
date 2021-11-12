@@ -1,9 +1,17 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Player.tscn" type="PackedScene" id=1]
-[ext_resource path="res://BulletManager.gd" type="Script" id=2]
+[ext_resource path="res://actors/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Main.gd" type="Script" id=3]
-[ext_resource path="res://Enemy.tscn" type="PackedScene" id=4]
+[ext_resource path="res://actors/Enemy.tscn" type="PackedScene" id=4]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Node2D
+
+func hanlde_bullet_spawner(bullet: Bullet,position,direction):
+	add_child(bullet)
+	bullet.global_position = position
+	bullet.set_direction(direction)
+"
 
 [node name="Main" type="Node2D"]
 script = ExtResource( 3 )
@@ -13,11 +21,5 @@ script = ExtResource( 3 )
 [node name="Enemy" parent="." instance=ExtResource( 4 )]
 position = Vector2( 288, 64 )
 
-[node name="Enemy2" parent="." instance=ExtResource( 4 )]
-position = Vector2( 240, 172 )
-
-[node name="Enemy3" parent="." instance=ExtResource( 4 )]
-position = Vector2( -348, 176 )
-
 [node name="BulletManager" type="Node2D" parent="."]
-script = ExtResource( 2 )
+script = SubResource( 1 )

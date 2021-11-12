@@ -1,19 +1,16 @@
 extends KinematicBody2D
+class_name Player
 
-export (PackedScene) var Bullet
 export var speed = 100
 
-var health: int = 100
+onready var health_stat = $Health
+onready var weapon = $Weapon
 
 signal palyer_fired_bullet(bullet,position,direction)
 
-onready var end_of_gun = $EndofGun
-onready var gun_direction = $GunDirection
-onready var attackcolldown = $AttackColdown
-onready var animation_player = $AnimationPlayer
 
 func _ready():
-	pass # Replace with function body.
+	weapon.connect("weapon_fired",self,"shoot")
 
 func _physics_process(delta: float) -> void:
 	var movement := Vector2.ZERO
@@ -35,17 +32,12 @@ func _physics_process(delta: float) -> void:
 
 func _unhandled_input(event):
 		if event.is_action_released("shoot"):
-				shoot()
+				weapon.shoot()
 
-func shoot():
-	if attackcolldown.is_stopped():
-		var bullet_instance = Bullet.instance()
-		var direction = (gun_direction.global_position - end_of_gun.global_position).normalized()
-		emit_signal("palyer_fired_bullet",bullet_instance,end_of_gun.global_position,direction)
-		attackcolldown.start()
-		animation_player.play("muzzle_flash")
+func shoot(bullet_instance,location: Vector2,direction: Vector2):
+	emit_signal("palyer_fired_bullet",bullet_instance,location,direction)
 
 
 func handle_hit():
-	health -= 20
-	print("Player Hit",health)
+	health_stat.health -= 20
+	print("Player Hit",health_stat.health)

@@ -1,11 +1,11 @@
 extends KinematicBody2D
 
-var health := 100
 var speed = 100
+onready var health_stat = $Health
 
 func handle_hit():
-	health -= 100
-	if health <=0 :
+	health_stat.health -= 100
+	if health_stat.health <=0 :
 		queue_free()
 
 func _physics_process(delta: float) -> void:
