@@ -20,6 +20,10 @@ script = ExtResource( 3 )
 
 [node name="Enemy" parent="." instance=ExtResource( 4 )]
 position = Vector2( 288, 64 )
+wepn = true
+
+[node name="Enemy2" parent="." instance=ExtResource( 4 )]
+position = Vector2( 128, 256 )
 
 [node name="BulletManager" type="Node2D" parent="."]
 script = SubResource( 1 )
