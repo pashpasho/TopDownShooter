@@ -5,15 +5,19 @@ export var speed = 100
 
 onready var health_stat = $Health
 onready var ai = $AI
-onready var weapon = $Weapon
-
+onready var weapon: weapon = $Weapon
+onready var team = $Team
 
 func _ready() -> void:
 	if	wepn:
-		ai.initialize(self, weapon)
+		ai.initialize(self, weapon, team.team)
+		weapon.initialize(team.team)
 	else:
-		ai.initialize(self, null)
+		ai.initialize(self, null, team.team)
 		weapon.visible = false
+
+func get_team() -> int:
+	return team.team
 
 func handle_hit():
 	health_stat.health -= 100

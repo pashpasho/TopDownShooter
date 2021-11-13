@@ -1,17 +1,18 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://actors/Enemy.gd" type="Script" id=1]
+[ext_resource path="res://actors/Actor.gd" type="Script" id=1]
 [ext_resource path="res://actors/Health.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Assets/topdown-shooter/Spritesheet/spritesheet_characters.png" type="Texture" id=3]
 [ext_resource path="res://actors/AI.gd" type="Script" id=4]
 [ext_resource path="res://weapons/Weapon.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Team.tscn" type="PackedScene" id=6]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 16.0
 height = 7.46712
 
 [sub_resource type="CircleShape2D" id=2]
-radius = 88.0227
+radius = 216.009
 
 [node name="Enemy" type="KinematicBody2D"]
 script = ExtResource( 1 )
@@ -35,11 +36,11 @@ position = Vector2( 30, 10 )
 [node name="AI" type="Node2D" parent="."]
 script = ExtResource( 4 )
 
-[node name="PlayerDetectionZone" type="Area2D" parent="AI" groups=[
+[node name="DetectionZone" type="Area2D" parent="AI" groups=[
 "enemy",
 ]]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AI/PlayerDetectionZone"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AI/DetectionZone"]
 position = Vector2( 8, 0 )
 shape = SubResource( 2 )
 
@@ -47,6 +48,9 @@ shape = SubResource( 2 )
 wait_time = 3.0
 one_shot = true
 
-[connection signal="body_entered" from="AI/PlayerDetectionZone" to="AI" method="_on_PlayerDetectionZone_body_entered"]
-[connection signal="body_exited" from="AI/PlayerDetectionZone" to="AI" method="_on_PlayerDetectionZone_body_exited"]
+[node name="Team" parent="." instance=ExtResource( 6 )]
+team = 1
+
+[connection signal="body_entered" from="AI/DetectionZone" to="AI" method="_on_DetectionZone_body_entered"]
+[connection signal="body_exited" from="AI/DetectionZone" to="AI" method="_on_DetectionZone_body_exited"]
 [connection signal="timeout" from="AI/Patrol_Time" to="AI" method="_on_Patrol_Time_timeout"]

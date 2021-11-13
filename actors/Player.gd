@@ -4,8 +4,11 @@ class_name Player
 export var speed = 100
 
 onready var health_stat = $Health
-onready var weapon = $Weapon
+onready var weapon: weapon = $Weapon
+onready var team = $Team
 
+func _ready() -> void:
+	weapon.initialize(team.team)
 
 func _physics_process(delta: float) -> void:
 	var movement := Vector2.ZERO
@@ -24,10 +27,17 @@ func _physics_process(delta: float) -> void:
 
 	look_at(get_global_mouse_position())
 
-func _unhandled_input(event):
-		if event.is_action_released("shoot"):
-				weapon.shoot()
+func get_team()-> int:
+	return team.team
 
+func _unhandled_input(event):
+	if event.is_action_released("shoot"):
+			weapon.shoot()
+	elif event.is_action_released("reload"):
+			weapon.start_reload()	
+						
+func reload():
+	weapon.start_reload()
 
 func handle_hit():
 	health_stat.health -= 20
