@@ -1,9 +1,13 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://weapons/Bullet.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/kenney_topdowntanksredux/Spritesheet/onlyObjects_default.png" type="Texture" id=2]
 [ext_resource path="res://weapons/Weapon.gd" type="Script" id=3]
 [ext_resource path="res://Assets/topdown-shooter/weapon_silencer.png" type="Texture" id=4]
+[ext_resource path="res://lightawd.png" type="Texture" id=5]
+
+[sub_resource type="Animation" id=3]
+length = 0.05
 
 [sub_resource type="Animation" id=1]
 resource_name = "muzzle_flash"
@@ -85,10 +89,21 @@ one_shot = true
 visible = false
 position = Vector2( 28, 0 )
 rotation = -1.5708
+scale = Vector2( 0.5, 1.2 )
 texture = ExtResource( 2 )
 region_enabled = true
 region_rect = Rect2( 324, 334, 20, 25 )
 
+[node name="Light2D" type="Light2D" parent="Muzzle"]
+position = Vector2( 5.79198e-05, -6.66667 )
+rotation = 1.04788e-13
+scale = Vector2( 0.135615, 0.0653717 )
+texture = ExtResource( 5 )
+offset = Vector2( -0.147, 0 )
+color = Color( 0.905882, 0.462745, 0.462745, 1 )
+energy = 0.8
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 3 )
 anims/muzzle_flash = SubResource( 1 )
 anims/reload = SubResource( 2 )

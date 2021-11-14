@@ -3,6 +3,8 @@ class_name Player
 
 export var speed = 100
 
+onready var light = get_node("Light2D")
+
 onready var health_stat = $Health
 onready var weapon: weapon = $Weapon
 onready var team = $Team
@@ -21,6 +23,9 @@ func _physics_process(delta: float) -> void:
 		movement.x -= 1
 	if Input.is_action_pressed("right"):
 		movement.x += 1
+		
+	if Input.is_action_just_pressed("f"):
+		light.visible = !light.visible
 	
 	movement = movement.normalized() * speed
 	movement = move_and_slide(movement)
