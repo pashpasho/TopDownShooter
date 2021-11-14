@@ -1,4 +1,5 @@
 extends KinematicBody2D
+class_name Actor
 
 export (bool) var wepn
 export var speed = 100
@@ -18,6 +19,9 @@ func _ready() -> void:
 
 func get_team() -> int:
 	return team.team
+
+func has_reached_position(location: Vector2) -> bool:
+	return global_position.distance_to(location) < 250
 
 func handle_hit():
 	health_stat.health -= 100

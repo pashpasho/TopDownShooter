@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/flash-light.png-8dab73862869d5e5ca524daccfb5bc2a.stex"
+path="res://.import/light.png-2a7c25d2528b528b4775521a146eeb11.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://flash-light.png"
-dest_files=[ "res://.import/flash-light.png-8dab73862869d5e5ca524daccfb5bc2a.stex" ]
+source_file="res://Assets/light.png"
+dest_files=[ "res://.import/light.png-2a7c25d2528b528b4775521a146eeb11.stex" ]
 
 [params]
 

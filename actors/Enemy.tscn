@@ -49,8 +49,9 @@ wait_time = 3.0
 one_shot = true
 
 [node name="Team" parent="." instance=ExtResource( 6 )]
-team = 1
+team = 2
 
+[connection signal="area_shape_entered" from="AI/DetectionZone" to="AI" method="_on_DetectionZone_area_shape_entered"]
 [connection signal="body_entered" from="AI/DetectionZone" to="AI" method="_on_DetectionZone_body_entered"]
 [connection signal="body_exited" from="AI/DetectionZone" to="AI" method="_on_DetectionZone_body_exited"]
 [connection signal="timeout" from="AI/Patrol_Time" to="AI" method="_on_Patrol_Time_timeout"]

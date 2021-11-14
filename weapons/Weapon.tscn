@@ -4,7 +4,7 @@
 [ext_resource path="res://Assets/kenney_topdowntanksredux/Spritesheet/onlyObjects_default.png" type="Texture" id=2]
 [ext_resource path="res://weapons/Weapon.gd" type="Script" id=3]
 [ext_resource path="res://Assets/topdown-shooter/weapon_silencer.png" type="Texture" id=4]
-[ext_resource path="res://lightawd.png" type="Texture" id=5]
+[ext_resource path="res://Assets/lightawd.png" type="Texture" id=5]
 
 [sub_resource type="Animation" id=3]
 length = 0.05
