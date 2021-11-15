@@ -9,7 +9,7 @@
 [ext_resource path="res://Base.gd" type="Script" id=7]
 [ext_resource path="res://BulletManager.gd" type="Script" id=8]
 [ext_resource path="res://Assets/light.png" type="Texture" id=9]
-[ext_resource path="res://MapAI.gd" type="Script" id=10]
+[ext_resource path="res://MapAI.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Team.tscn" type="PackedScene" id=12]
 [ext_resource path="res://actors/Health.tscn" type="PackedScene" id=13]
 
@@ -1608,12 +1608,12 @@ points = PoolVector2Array( 26, 23.1667, 40.1667, 23.1667, 39.3333, 34.8333, 25.1
 } ]
 0/z_index = 0
 
-[sub_resource type="GDScript" id=80]
+[sub_resource type="GDScript" id=79]
 script/source = "extends CanvasModulate
 
 "
 
-[sub_resource type="RectangleShape2D" id=81]
+[sub_resource type="RectangleShape2D" id=80]
 extents = Vector2( 250.969, 377.55 )
 
 [node name="Main" type="Node2D"]
@@ -1716,6 +1716,7 @@ texture = ExtResource( 9 )
 energy = 0.8
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( -284.596, -183.696 )
 
 [node name="BulletManager" type="Node2D" parent="."]
 script = ExtResource( 8 )
@@ -1723,17 +1724,11 @@ script = ExtResource( 8 )
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 position = Vector2( 64, 0 )
 color = Color( 0.117647, 0.105882, 0.105882, 1 )
-script = SubResource( 80 )
+script = SubResource( 79 )
 
-[node name="EnemyMapAI" type="Node2D" parent="."]
-script = ExtResource( 10 )
-
-[node name="Enemy" parent="EnemyMapAI" instance=ExtResource( 4 )]
-position = Vector2( 1064.74, 165.022 )
-wepn = true
-
-[node name="Enemy2" parent="EnemyMapAI" instance=ExtResource( 4 )]
-position = Vector2( 904.744, 357.022 )
+[node name="EnemyMapAI" parent="." instance=ExtResource( 10 )]
+team_name = 2
+unit = ExtResource( 4 )
 
 [node name="Base" type="Area2D" parent="." groups=[
 "player",
@@ -1743,10 +1738,103 @@ script = ExtResource( 7 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Base"]
 position = Vector2( 19.5549, 34.5591 )
-shape = SubResource( 81 )
+shape = SubResource( 80 )
 
 [node name="Team" parent="Base" instance=ExtResource( 12 )]
 team = 1
 
 [node name="Health" parent="Base" instance=ExtResource( 13 )]
 health = 5000
+
+[node name="EnemyRespawnPoint" type="Node2D" parent="."]
+position = Vector2( -288.478, -479.945 )
+scale = Vector2( 0.395508, 0.395508 )
+
+[node name="Position2D" type="Position2D" parent="EnemyRespawnPoint"]
+position = Vector2( -3340.42, 5083.52 )
+
+[node name="Position2D2" type="Position2D" parent="EnemyRespawnPoint"]
+position = Vector2( -1597.18, 5014.18 )
+
+[node name="Position2D3" type="Position2D" parent="EnemyRespawnPoint"]
+position = Vector2( -1576.15, -2568.56 )
+
+[node name="Position2D4" type="Position2D" parent="EnemyRespawnPoint"]
+position = Vector2( -4612.93, 4716.34 )
+
+[node name="Position2D5" type="Position2D" parent="EnemyRespawnPoint"]
+position = Vector2( -309.011, 5059.05 )
+
+[node name="Position2D6" type="Position2D" parent="EnemyRespawnPoint"]
+position = Vector2( -4885.54, 2234.19 )
+
+[node name="Position2D7" type="Position2D" parent="EnemyRespawnPoint"]
+position = Vector2( -235.941, -2559.38 )
+
+[node name="Position2D8" type="Position2D" parent="EnemyRespawnPoint"]
+position = Vector2( -3090.58, -2603.39 )
+
+[node name="Position2D9" type="Position2D" parent="EnemyRespawnPoint"]
+position = Vector2( -4845.09, 1060.73 )
+
+[node name="Position2D10" type="Position2D" parent="EnemyRespawnPoint"]
+position = Vector2( -4628.57, -979.902 )
+
+[node name="Position2D11" type="Position2D" parent="EnemyRespawnPoint"]
+position = Vector2( -4622.56, -2267.26 )
+
+[node name="Position2D12" type="Position2D" parent="EnemyRespawnPoint"]
+position = Vector2( 2959.97, 4890.65 )
+rotation = 6.28319
+
+[node name="Position2D13" type="Position2D" parent="EnemyRespawnPoint"]
+position = Vector2( 4703.21, 4821.31 )
+rotation = 6.28319
+
+[node name="Position2D14" type="Position2D" parent="EnemyRespawnPoint"]
+position = Vector2( 4724.24, -2761.43 )
+rotation = 6.28319
+
+[node name="Position2D15" type="Position2D" parent="EnemyRespawnPoint"]
+position = Vector2( 1451.73, 4952.07 )
+rotation = 6.28319
+
+[node name="Position2D16" type="Position2D" parent="EnemyRespawnPoint"]
+position = Vector2( 5991.38, 4866.18 )
+rotation = 6.28319
+
+[node name="Position2D17" type="Position2D" parent="EnemyRespawnPoint"]
+position = Vector2( 6815.19, 3755.71 )
+rotation = 6.28319
+
+[node name="Position2D18" type="Position2D" parent="EnemyRespawnPoint"]
+position = Vector2( 6064.46, -2752.25 )
+rotation = 6.28319
+
+[node name="Position2D19" type="Position2D" parent="EnemyRespawnPoint"]
+position = Vector2( 3209.82, -2796.26 )
+rotation = 6.28319
+
+[node name="Position2D20" type="Position2D" parent="EnemyRespawnPoint"]
+position = Vector2( 6812.79, 2539.39 )
+rotation = 6.28319
+
+[node name="Position2D21" type="Position2D" parent="EnemyRespawnPoint"]
+position = Vector2( 6750.72, 48.7336 )
+rotation = 6.28319
+
+[node name="Position2D22" type="Position2D" parent="EnemyRespawnPoint"]
+position = Vector2( 1784.99, -2717.29 )
+rotation = 6.28319
+
+[node name="Position2D23" type="Position2D" parent="EnemyRespawnPoint"]
+position = Vector2( 6628.15, -1624.36 )
+rotation = 6.28319
+
+[node name="Position2D24" type="Position2D" parent="EnemyRespawnPoint"]
+position = Vector2( 6692.44, -767.165 )
+rotation = 6.28319
+
+[node name="Position2D25" type="Position2D" parent="EnemyRespawnPoint"]
+position = Vector2( 756.352, -2695.86 )
+rotation = 6.28319

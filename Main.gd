@@ -13,4 +13,6 @@ func _ready() -> void:
 	GlobalSignals.connect("bullet_fired",bullet_manager,"hanlde_bullet_spawner")
 	Input.set_custom_mouse_cursor(arrow)
 
-	enemy_ai.initialize(base.global_position)
+	var enemy_respawns =$EnemyRespawnPoint
+
+	enemy_ai.initialize(base.global_position,enemy_respawns.get_children())

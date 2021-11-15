@@ -1,7 +1,9 @@
 extends KinematicBody2D
 class_name Actor
 
-export (bool) var wepn
+signal died
+
+export (bool) var wepn = true
 export var speed = 100
 
 onready var health_stat = $Health
@@ -26,6 +28,7 @@ func has_reached_position(location: Vector2) -> bool:
 func handle_hit():
 	health_stat.health -= 100
 	if health_stat.health <=0 :
+		emit_signal("died")
 		queue_free()
 
 func rotate_toward(location: Vector2):
