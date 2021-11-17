@@ -1,6 +1,9 @@
 extends KinematicBody2D
 class_name Player
 
+signal player_health_changed(new_health)
+signal died
+
 export var speed = 100
 
 onready var light = get_node("Light2D")
@@ -46,4 +49,9 @@ func reload():
 
 func handle_hit():
 	health_stat.health -= 20
-	print("Player Hit",health_stat.health)
+	emit_signal("player_health_changed",health_stat.health)
+	if health_stat.health <= 0:
+		die()
+
+func die():
+	emit_signal("died")

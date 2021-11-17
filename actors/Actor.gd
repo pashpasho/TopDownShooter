@@ -1,15 +1,17 @@
 extends KinematicBody2D
 class_name Actor
 
-signal died
-
 export (bool) var wepn = true
 export var speed = 100
+
+signal dead(unit)
 
 onready var health_stat = $Health
 onready var ai = $AI
 onready var weapon: weapon = $Weapon
 onready var team = $Team
+
+var minimap_icon = "mob"
 
 func _ready() -> void:
 	if	wepn:
@@ -28,7 +30,7 @@ func has_reached_position(location: Vector2) -> bool:
 func handle_hit():
 	health_stat.health -= 100
 	if health_stat.health <=0 :
-		emit_signal("died")
+		emit_signal("dead",self)
 		queue_free()
 
 func rotate_toward(location: Vector2):

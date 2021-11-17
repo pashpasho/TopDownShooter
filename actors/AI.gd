@@ -18,6 +18,7 @@ var target: KinematicBody2D = null
 var weapon: weapon = null
 var actor_velocity: Vector2 = Vector2.ZERO
 var team: int = -1
+var house: House
 
 #PATROL_STATE
 var origin: Vector2 = Vector2.ZERO
@@ -59,7 +60,7 @@ func _physics_process(delta: float) -> void:
 					actor.move_and_collide(pos_to_base*100*delta)
 		State.ADVANCE:
 			if actor.has_reached_position(base):
-				set_state(State.ENGAGE)
+					set_state(State.ENGAGE)
 			else:
 				actor_velocity = actor.velocity_toward(base)
 				actor.move_and_slide(actor_velocity)

@@ -14,7 +14,9 @@ height = 7.46712
 [sub_resource type="CircleShape2D" id=2]
 radius = 216.009
 
-[node name="Enemy" type="KinematicBody2D"]
+[node name="Enemy" type="KinematicBody2D" groups=[
+"minimap_objects",
+]]
 script = ExtResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -31,6 +33,7 @@ shape = SubResource( 1 )
 position = Vector2( 30, 10 )
 
 [node name="Health" parent="." instance=ExtResource( 2 )]
+health = 100
 
 [node name="AI" type="Node2D" parent="."]
 script = ExtResource( 4 )

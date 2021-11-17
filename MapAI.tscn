@@ -11,7 +11,7 @@ script = ExtResource( 3 )
 [node name="UnitContainer" type="Node2D" parent="."]
 
 [node name="RespawnTimer" type="Timer" parent="."]
-wait_time = 1.5
+wait_time = 9.0
 one_shot = true
 
 [connection signal="timeout" from="RespawnTimer" to="." method="_on_RespawnTimer_timeout"]

@@ -24,6 +24,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://weapons/Bullet.gd"
 }, {
+"base": "Area2D",
+"class": "House",
+"language": "GDScript",
+"path": "res://Base.gd"
+}, {
+"base": "Node2D",
+"class": "MapAI",
+"language": "GDScript",
+"path": "res://MapAI.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "Player",
 "language": "GDScript",
@@ -43,6 +53,8 @@ _global_script_class_icons={
 "AI": "",
 "Actor": "",
 "Bullet": "",
+"House": "",
+"MapAI": "",
 "Player": "",
 "Team": "",
 "weapon": ""

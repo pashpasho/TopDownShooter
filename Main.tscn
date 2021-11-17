@@ -1,4 +1,4 @@
-[gd_scene load_steps=93 format=2]
+[gd_scene load_steps=95 format=2]
 
 [ext_resource path="res://actors/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/topdown-shooter/Tilesheet/tilesheet_complete.png" type="Texture" id=2]
@@ -10,8 +10,10 @@
 [ext_resource path="res://BulletManager.gd" type="Script" id=8]
 [ext_resource path="res://Assets/light.png" type="Texture" id=9]
 [ext_resource path="res://MapAI.tscn" type="PackedScene" id=10]
+[ext_resource path="res://UI/GUI.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Team.tscn" type="PackedScene" id=12]
 [ext_resource path="res://actors/Health.tscn" type="PackedScene" id=13]
+[ext_resource path="res://MiniMap.tscn" type="PackedScene" id=15]
 
 [sub_resource type="AtlasTexture" id=1]
 
@@ -1720,6 +1722,7 @@ energy = 0.8
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( -284.596, -183.696 )
+speed = 200
 
 [node name="BulletManager" type="Node2D" parent="."]
 script = ExtResource( 8 )
@@ -1733,21 +1736,20 @@ script = SubResource( 79 )
 team_name = 2
 unit = ExtResource( 4 )
 
-[node name="Base" type="Area2D" parent="." groups=[
+[node name="house" type="Area2D" parent="." groups=[
 "player",
 ]]
 position = Vector2( -530.401, -161.817 )
 script = ExtResource( 7 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Base"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="house"]
 position = Vector2( 19.5549, 34.5591 )
 shape = SubResource( 80 )
 
-[node name="Team" parent="Base" instance=ExtResource( 12 )]
+[node name="Team" parent="house" instance=ExtResource( 12 )]
 team = 1
 
-[node name="Health" parent="Base" instance=ExtResource( 13 )]
-health = 5000
+[node name="Health" parent="house" instance=ExtResource( 13 )]
 
 [node name="EnemyRespawnPoint" type="Node2D" parent="."]
 position = Vector2( -288.478, -479.945 )
@@ -1841,3 +1843,14 @@ rotation = 6.28319
 [node name="Position2D25" type="Position2D" parent="EnemyRespawnPoint"]
 position = Vector2( 756.352, -2695.86 )
 rotation = 6.28319
+
+[node name="GUI" parent="." instance=ExtResource( 11 )]
+
+[node name="MiniMap" type="CanvasLayer" parent="."]
+
+[node name="MiniMap2" parent="MiniMap" instance=ExtResource( 15 )]
+margin_left = 928.0
+margin_top = -4.0
+margin_right = 1128.0
+margin_bottom = 196.0
+player = NodePath("../../Player")

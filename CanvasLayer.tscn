@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://MiniMap.tscn" type="PackedScene" id=2]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="MiniMap" parent="." instance=ExtResource( 2 )]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -96.0
+margin_top = -604.0
+margin_right = 104.0
+margin_bottom = -404.0
