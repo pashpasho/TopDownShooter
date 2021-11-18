@@ -35,6 +35,6 @@ texture = ExtResource( 3 )
 color = Color( 0.933333, 0.941176, 0.67451, 1 )
 energy = 0.4
 
-[connection signal="area_shape_entered" from="." to="." method="_on_Bullet_area_shape_entered"]
+[connection signal="area_entered" from="." to="." method="_on_Bullet_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_Bullet_body_entered"]
 [connection signal="timeout" from="KillTimer" to="." method="_on_KillTimer_timeout"]

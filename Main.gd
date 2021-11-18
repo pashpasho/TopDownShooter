@@ -9,6 +9,8 @@ onready var canvs_lyer = $MiniMap/MiniMap2
 onready var base = $house
 onready var gui = $GUI
 onready var tilemap = $Area/TileMap
+onready var ground = $Ground
+onready var pathfinding = $Pathfinding
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -18,7 +20,9 @@ func _ready() -> void:
 
 	var enemy_respawns =$EnemyRespawnPoint
 
-	enemy_ai.initialize(base.global_position,enemy_respawns.get_children())
+	pathfinding.create_navigation_map(ground)
+	
+	enemy_ai.initialize(base.global_position,enemy_respawns.get_children(),pathfinding)
 	gui.set_player(player,base)
 	canvs_lyer.set_ai(enemy_ai)
 	

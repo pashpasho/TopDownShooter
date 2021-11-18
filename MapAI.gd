@@ -15,21 +15,20 @@ onready var respawn_timer = $RespawnTimer
 var base = Vector2.ZERO
 var respawn_points: Array = []
 var reach_end: int = 0 
+var pathfinding: Pathfinding
 
-func initialize(location: Vector2,respwn: Array):
+
+func initialize(location: Vector2,respwn: Array, pathfinding: Pathfinding):
 	if respwn.size() == 0 or unit == null:
 		push_error("Forgot To Properly Initialize Our Map AI")
 		return
 	
 	base = location
 	team.team = team_name
+	self.pathfinding = pathfinding
 	self.respawn_points = respwn
 	respawn_timer.start()
-
-func assign_base(unit: Actor):
-		var ai: AI = unit.ai
-		ai.base = base
-		ai.set_state(AI.State.ADVANCE)
+	
 		
 func spawn_unit(spawn_location: Vector2):
 	if reach_end < max_enemy_to_spawn:
@@ -37,11 +36,20 @@ func spawn_unit(spawn_location: Vector2):
 		unit_container.add_child(unit_instance)
 		unit_instance.global_position = spawn_location
 		emit_signal("spwn_enemy",unit_instance)
+		unit_instance.ai.pathfinding = pathfinding
 		assign_base(unit_instance)
 		reach_end += 1
 	else:
 		#victory game end
 		pass
+
+
+func assign_base(unit: Actor):
+		var ai: AI = unit.ai
+		ai.base = base
+		ai.set_state(AI.State.ADVANCE)
+
+
 
 
 func _on_RespawnTimer_timeout() -> void:

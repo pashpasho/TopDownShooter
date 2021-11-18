@@ -14,11 +14,13 @@ onready var patrol_timer = $Patrol_Time
 
 var actor: Actor = null
 var current_state: int = -1 setget set_state
-var target: KinematicBody2D = null
+var target = null
 var weapon: weapon = null
 var actor_velocity: Vector2 = Vector2.ZERO
 var team: int = -1
 var house: House
+
+var pathfinding: Pathfinding
 
 #PATROL_STATE
 var origin: Vector2 = Vector2.ZERO
@@ -27,9 +29,6 @@ var patrol_location_reached := false
 
 #ADVANCE_STATE
 var base: Vector2 = Vector2.ZERO
-
-func _ready() -> void:
-	set_state(State.PATROL)
 	
 	
 func _physics_process(delta: float) -> void:
@@ -52,19 +51,15 @@ func _physics_process(delta: float) -> void:
 				else:
 					var pos_to_plr: Vector2= (target.global_position - global_position).normalized()
 					actor.move_and_collide(pos_to_plr*100*delta)
-			elif target == null:
-				if weapon != null:
-					weapon.shoot()
-				else:
-					var pos_to_base: Vector2= (base - global_position).normalized()
-					actor.move_and_collide(pos_to_base*100*delta)
 		State.ADVANCE:
-			if actor.has_reached_position(base):
-					set_state(State.ENGAGE)
-			else:
-				actor_velocity = actor.velocity_toward(base)
+			#optimization if you want to have beter pathfinding and optimization for each frame
+			var path = pathfinding.get_new_path(global_position, base)
+			if path.size() > 1 and not actor.has_reached_position(base):
+				actor_velocity = actor.velocity_toward(path[1])
+				actor.rotate_toward(path[1])
 				actor.move_and_slide(actor_velocity)
-				actor.rotate_toward(base)
+			else:
+				set_state(State.ENGAGE)
 		_:
 			print("Error:state dosn^t exists...")
 
@@ -118,6 +113,10 @@ func _on_DetectionZone_body_exited(body: Node) -> void:
 
 
 
-func _on_DetectionZone_area_shape_entered(area_id: int, area: Area2D, area_shape: int, local_shape: int) -> void:
+
+func _on_DetectionZone_area_entered(area: Area2D) -> void:
 	if area.has_method("get_team") and area.get_team() != team:
 		set_state(State.ENGAGE)
+		target = area
+
+
