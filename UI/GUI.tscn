@@ -73,7 +73,8 @@ rect_min_size = Vector2( 200, 30 )
 mouse_filter = 2
 custom_styles/fg = ExtResource( 3 )
 custom_styles/bg = SubResource( 1 )
-value = 50.0
+max_value = 500.0
+value = 500.0
 percent_visible = false
 
 [node name="HealthTween" type="Tween" parent="MarginContainer/Rows/BottomRow3/HealthSection"]
