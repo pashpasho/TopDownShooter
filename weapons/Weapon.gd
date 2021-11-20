@@ -22,7 +22,8 @@ func initialize(team: int):
 
 func start_reload():
 	animation_player.play("reload")
-
+	current_ammo = 0
+	
 func _stop_reload():
 	current_ammo = max_ammo
 	emit_signal("weapon_ammo_changed",current_ammo)

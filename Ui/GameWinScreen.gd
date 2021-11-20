@@ -3,6 +3,7 @@ extends CanvasLayer
 
 
 func _on_NextButton_pressed() -> void:
+	get_tree().paused = false
 	get_tree().change_scene("res://Main.tscn")
 
 

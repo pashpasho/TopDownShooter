@@ -11,7 +11,6 @@ onready var enemy_ai = $EnemyMapAI
 onready var canvs_lyer = $MiniMap/MiniMap2
 onready var base = $house
 onready var gui = $GUI
-onready var tilemap = $Area/TileMap
 onready var ground = $Ground
 onready var pathfinding = $Pathfinding
 

@@ -10,6 +10,7 @@ onready var health_stat = $Health
 onready var ai = $AI
 onready var weapon: weapon = $Weapon
 onready var team = $Team
+onready var coliisionshape = $CollisionShape2D
 
 var minimap_icon = "mob"
 
