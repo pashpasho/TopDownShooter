@@ -2,7 +2,7 @@ extends Node2D
 class_name AI
 
 signal state_changed(new_state)
-
+export (bool) var should_draw_path_line := true
 
 enum State {
 	PATROL,
@@ -11,6 +11,7 @@ enum State {
 }
 
 onready var patrol_timer = $Patrol_Time
+onready var path_line = $PathLine
 
 var actor: Actor = null
 var current_state: int = -1 setget set_state
@@ -29,7 +30,7 @@ var patrol_location_reached := false
 
 #ADVANCE_STATE
 var base: Vector2 = Vector2.ZERO
-	
+
 	
 func _physics_process(delta: float) -> void:
 	match current_state:
@@ -70,9 +71,26 @@ func initialize(actor: KinematicBody2D, weapon: weapon, team: int):
 	self.team = team
 	if weapon != null:
 		weapon.connect("weapon_out_of_ammo",self,"handle_reload")
-	
+
+
+
 func handle_reload():
 	weapon.start_reload()	
+
+
+func set_path_line(points: Array):
+	if not should_draw_path_line:
+		return
+
+	var local_points := []
+	for point in points:
+		if point == points[0]:
+			local_points.append(Vector2.ZERO)
+		else:
+			local_points.append(point - global_position)
+
+	path_line.points = local_points
+	
 	
 func set_state(new_state: int):
 	if new_state == current_state:
