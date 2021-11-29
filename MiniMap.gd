@@ -3,8 +3,7 @@ extends MarginContainer
 export (NodePath) var player  # Link to Player node. If this is null, the map will not function.
 export var zoom = 1.5 setget set_zoom # Scale multiplier.
 
-var actor: MapAI
-var enemy: Actor
+var map_ai: MapAI
 
 # Node references.
 onready var grid = $MarginContainer/Grid
@@ -19,8 +18,8 @@ var grid_scale  # Calculated world to map scale.
 var markers = {}  # Dictionary of object: marker.
 
 func set_ai(mapai):
-	self.actor = mapai
-	actor.connect("spwn_enemy",self,"add_enemy_in_minimap")
+	self.map_ai = mapai
+	map_ai.connect("spwn_enemy",self,"add_enemy_in_minimap")
 
 func _ready():
 	var a = 5

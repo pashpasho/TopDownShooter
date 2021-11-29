@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Tornado Siren-SoundBible.com-897026957.mp3-c02b82c0934dbbbb5ee4145f94e428ed.mp3str"
+
+[deps]
+
+source_file="res://Sounds/Tornado Siren-SoundBible.com-897026957.mp3"
+dest_files=[ "res://.import/Tornado Siren-SoundBible.com-897026957.mp3-c02b82c0934dbbbb5ee4145f94e428ed.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

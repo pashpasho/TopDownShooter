@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/mixkit-handgun-click-1660.mp3-2d0645bfe3f4535680a9405792b2cad8.mp3str"
+
+[deps]
+
+source_file="res://Sounds/mixkit-handgun-click-1660.mp3"
+dest_files=[ "res://.import/mixkit-handgun-click-1660.mp3-2d0645bfe3f4535680a9405792b2cad8.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

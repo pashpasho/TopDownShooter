@@ -7,7 +7,7 @@ const gamewinscreen = preload("res://Ui/GameWinScreen.tscn")
 
 onready var player: Player = $Player
 onready var bullet_manager = $BulletManager
-onready var enemy_ai = $EnemyMapAI
+onready var enemy_map_ai = $EnemyMapAI
 onready var canvs_lyer = $MiniMap/MiniMap2
 onready var base = $house
 onready var gui = $GUI
@@ -24,11 +24,11 @@ func _ready() -> void:
 
 	pathfinding.create_navigation_map(ground)
 	
-	enemy_ai.initialize(base.global_position,enemy_respawns.get_children(),pathfinding)
+	enemy_map_ai.initialize(enemy_respawns.get_children(),pathfinding)
 	gui.set_player(player,base)
-	canvs_lyer.set_ai(enemy_ai)
+	canvs_lyer.set_ai(enemy_map_ai)
 	player.connect("died",self,"handle_player_lose")
-	enemy_ai.connect("map_cleared",self,"handle_player_win")
+	enemy_map_ai.connect("map_cleared",self,"handle_player_win")
 	
 	for object in get_tree().get_nodes_in_group("minimap_objects"):
 		object.connect("removed", $CanvasLayer/MiniMap, "_on_object_removed")

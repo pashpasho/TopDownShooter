@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Font/ButtomFont.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Font/GameOverFont.tres" type="DynamicFont" id=2]
 [ext_resource path="res://Ui/GameOverScreen.gd" type="Script" id=3]
+[ext_resource path="res://Sounds/End.mp3" type="AudioStream" id=4]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.0745098, 0.054902, 0.156863, 1 )
@@ -92,6 +93,10 @@ margin_bottom = 273.0
 custom_colors/font_color_hover = Color( 1, 0, 0, 1 )
 custom_fonts/font = ExtResource( 1 )
 text = "Quit"
+
+[node name="Lose" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+autoplay = true
 
 [connection signal="pressed" from="PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer/RestartButton" to="." method="_on_RestartButton_pressed"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer/MainMenuButton2" to="." method="_on_MainMenuButton2_pressed"]

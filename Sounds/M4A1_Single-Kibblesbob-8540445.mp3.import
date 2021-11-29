@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/M4A1_Single-Kibblesbob-8540445.mp3-f066de7fe1855746f647ab0ca888c0c5.mp3str"
+
+[deps]
+
+source_file="res://Sounds/M4A1_Single-Kibblesbob-8540445.mp3"
+dest_files=[ "res://.import/M4A1_Single-Kibblesbob-8540445.mp3-f066de7fe1855746f647ab0ca888c0c5.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

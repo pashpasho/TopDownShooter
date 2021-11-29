@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Ui/PauseScreen.gd" type="Script" id=1]
 [ext_resource path="res://Font/ButtomFont.tres" type="DynamicFont" id=2]
 [ext_resource path="res://Ui/MainMenuStyle.tres" type="StyleBox" id=3]
+[ext_resource path="res://Sounds/pause-Selection.mp3" type="AudioStream" id=4]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.815686, 0.517647, 0.517647, 1 )
@@ -95,6 +96,11 @@ margin_bottom = 251.0
 custom_colors/font_color_hover = Color( 1, 0, 0, 1 )
 custom_fonts/font = ExtResource( 2 )
 text = "Main Menu"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 4 )
+volume_db = 10.0
+autoplay = true
 
 [connection signal="pressed" from="PauseMenuContier/PanelContainer/MarginContainer/Rows/ContinueButton" to="." method="_on_ContinueButton_pressed"]
 [connection signal="pressed" from="PauseMenuContier/PanelContainer/MarginContainer/Rows/MainMenuButton2" to="." method="_on_MainMenuButton2_pressed"]

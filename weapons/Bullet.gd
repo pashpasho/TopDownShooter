@@ -2,7 +2,7 @@ extends Area2D
 
 class_name Bullet
 
-export (int) var speed = 18
+export (int) var speed = 20
 
 onready var kill_timer = $KillTimer
 

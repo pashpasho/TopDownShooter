@@ -1,10 +1,13 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://weapons/Bullet.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/kenney_topdowntanksredux/Spritesheet/onlyObjects_default.png" type="Texture" id=2]
 [ext_resource path="res://weapons/Weapon.gd" type="Script" id=3]
 [ext_resource path="res://Assets/topdown-shooter/weapon_silencer.png" type="Texture" id=4]
 [ext_resource path="res://Assets/lightawd.png" type="Texture" id=5]
+[ext_resource path="res://Sounds/M4A1_Single-Kibblesbob-8540445.mp3" type="AudioStream" id=6]
+[ext_resource path="res://Sounds/mixkit-handgun-click-1660.mp3" type="AudioStream" id=7]
+[ext_resource path="res://Sounds/GunDryFire PE1096501.mp3" type="AudioStream" id=8]
 
 [sub_resource type="Animation" id=3]
 length = 0.05
@@ -67,6 +70,9 @@ tracks/1/keys = {
 } ]
 }
 
+[sub_resource type="Animation" id=4]
+resource_name = "sound"
+
 [node name="Weapon" type="Node2D"]
 script = ExtResource( 3 )
 Bullet = ExtResource( 1 )
@@ -107,3 +113,17 @@ energy = 0.8
 anims/RESET = SubResource( 3 )
 anims/muzzle_flash = SubResource( 1 )
 anims/reload = SubResource( 2 )
+anims/sound = SubResource( 4 )
+
+[node name="Shoot" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 6 )
+pitch_scale = 1.3
+attenuation = 1.51572
+
+[node name="Reload" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 7 )
+volume_db = -5.0
+
+[node name="T" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+volume_db = 5.0

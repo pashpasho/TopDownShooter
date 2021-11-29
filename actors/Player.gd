@@ -6,7 +6,7 @@ signal died
 
 export var speed = 100
 
-onready var light = get_node("Light2D")
+onready var light = $Flashlight
 
 onready var health_stat = $Health
 onready var weapon: weapon = $Weapon
@@ -30,6 +30,8 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("f"):
 		light.visible = !light.visible
 	
+	
+	
 	movement = movement.normalized() * speed
 	movement = move_and_slide(movement)
 
@@ -47,8 +49,8 @@ func _unhandled_input(event):
 func reload():
 	weapon.start_reload()
 
-func handle_hit():
-	health_stat.health -= 20
+func handle_hit(hit: int):
+	health_stat.health -= hit
 	emit_signal("player_health_changed",health_stat.health)
 	if health_stat.health <= 0:
 		die()
